@@ -3,22 +3,14 @@ data "aws_ami" "app_ami" {
 
   filter {
     name   = "name"
-    values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
+    values = ["Amazon Linux 2023 (kernel-6.1)"]
   }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["979382823631"] # Bitnami
-}
-
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.app_ami.id
-  instance_type = "t3.nano"
+resource "aws_instance" "EC2" {
+  ami           = "ami-01dc51e87421923b6"
+  instance_type = "t3.micro"
 
   tags = {
-    Name = "HelloWorld"
+    Name = "terrapuma"
   }
 }
